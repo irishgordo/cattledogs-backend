@@ -1,0 +1,12 @@
+apiVersion: cattledogs.cattledogs-backend.gordoughnet.com/v1
+kind: CattleLocation
+metadata:
+  labels:
+    app.kubernetes.io/name: cattlelocation
+    app.kubernetes.io/instance: cattlelocation-sample
+    app.kubernetes.io/part-of: cattledogs-backend
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: cattledogs-backend
+  name: cattlelocation-sample
+spec:
+  # TODO(user): Add fields here
