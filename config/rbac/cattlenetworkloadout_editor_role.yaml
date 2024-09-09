@@ -1,0 +1,31 @@
+# permissions for end users to edit cattlenetworkloadouts.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: cattlenetworkloadout-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: cattledogs-backend
+    app.kubernetes.io/part-of: cattledogs-backend
+    app.kubernetes.io/managed-by: kustomize
+  name: cattlenetworkloadout-editor-role
+rules:
+- apiGroups:
+  - cattledogs.cattledogs-backend.gordoughnet.com
+  resources:
+  - cattlenetworkloadouts
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - cattledogs.cattledogs-backend.gordoughnet.com
+  resources:
+  - cattlenetworkloadouts/status
+  verbs:
+  - get

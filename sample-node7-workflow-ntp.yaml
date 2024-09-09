@@ -1,0 +1,13 @@
+apiVersion: tinkerbell.org/v1alpha1
+kind: Workflow
+metadata:
+  name: node7-ntp-test
+  namespace: tink-system
+spec:
+  bootOptions:
+    bootMode: "netboot"
+    toggleAllowNetboot: true
+  templateRef: ntp-tester
+  hardwareRef: hp-160-node-7
+  hardwareMap:
+    device_1: fc:15:b4:94:a9:23

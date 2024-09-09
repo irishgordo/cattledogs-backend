@@ -1,0 +1,11 @@
+apiVersion: bmc.tinkerbell.org/v1alpha1
+kind: Job
+metadata:
+  name: temp-job-node-7-power-off
+  namespace: tink-system
+spec:
+  machineRef:
+    name: hp-160-node-7-bmc
+    namespace: tink-system
+  tasks:
+    - powerAction: "off"

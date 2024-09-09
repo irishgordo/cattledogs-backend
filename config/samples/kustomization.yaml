@@ -1,0 +1,5 @@
+## Append samples of your project ##
+resources:
+- cattledogs_v1_cattlelocation.yaml
+- cattledogs_v1_cattlenetworkloadout.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples

@@ -1,0 +1,12 @@
+apiVersion: cattledogs.cattledogs-backend.gordoughnet.com/v1
+kind: CattleNetworkLoadout
+metadata:
+  labels:
+    app.kubernetes.io/name: cattlenetworkloadout
+    app.kubernetes.io/instance: cattlenetworkloadout-sample
+    app.kubernetes.io/part-of: cattledogs-backend
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: cattledogs-backend
+  name: cattlenetworkloadout-sample
+spec:
+  # TODO(user): Add fields here

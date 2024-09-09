@@ -1,0 +1,13 @@
+apiVersion: bmc.tinkerbell.org/v1alpha1
+kind: Machine
+metadata:
+  name: hp-160-node-7-bmc
+  namespace: tink-system
+spec:
+  connection:
+    host: "192.168.11.17"
+    port: 623
+    insecureTLS: true
+    authSecretRef:
+      name: ilo-secret
+      namespace: tink-system

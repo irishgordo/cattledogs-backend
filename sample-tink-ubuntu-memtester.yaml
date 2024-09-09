@@ -1,0 +1,101 @@
+apiVersion: tinkerbell.org/v1alpha1
+kind: Template
+metadata:
+  name: ubuntu-mem-tester
+  namespace: tink-system
+spec:
+  data: |
+    name: ubuntu
+    version: "0.1"
+    global_timeout: 9800
+    tasks:
+      - name: "os installation"
+        worker: "{{.device_1}}"
+        volumes:
+          - /dev:/dev
+          - /dev/console:/dev/console
+          - /lib/firmware:/lib/firmware:ro
+        environment:
+          GLOBAL_VALUE: "my global value"
+        actions:
+          - name: "stream image"
+            image: quay.io/tinkerbell/actions/image2disk:latest
+            timeout: 9600
+            environment:
+              DEST_DISK: {{ index .Hardware.Disks 0 }}
+              IMG_URL: "http://192.168.104.237:5000/jammy-server-cloudimg-amd64.raw.gz"
+              COMPRESSED: true
+          - name: "add cloud init config"
+            image: quay.io/tinkerbell/actions/writefile:latest
+            timeout: 90
+            environment:
+              CONTENTS: |
+                datasource:
+                  Ec2:
+                    metadata_urls: ["http://192.168.99.137:56001"]
+                    strict_id: false
+                manage_etc_hosts: localhost
+                warnings:
+                  dsid_missing_source: off
+              DEST_DISK: {{ formatPartition ( index .Hardware.Disks 0 ) 1 }}
+              DEST_PATH: /etc/cloud/cloud.cfg.d/10_tinkerbell.cfg
+              DIRMODE: "0700"
+              FS_TYPE: ext4
+              GID: "0"
+              MODE: "0600"
+              UID: "0"
+          - name: "add cloud-init ds config"
+            image: quay.io/tinkerbell/actions/writefile:latest
+            timeout: 90
+            environment:
+              DEST_DISK: {{ formatPartition ( index .Hardware.Disks 0 ) 1 }}
+              FS_TYPE: ext4
+              DEST_PATH: /etc/cloud/ds-identify.cfg
+              UID: 0
+              GID: 0
+              MODE: 0600
+              DIRMODE: 0700
+              CONTENTS: |
+                datasource: Ec2
+          - name: "write netplan"
+            image: quay.io/tinkerbell/actions/writefile:latest
+            timeout: 90
+            environment:
+              DEST_DISK: {{ formatPartition ( index .Hardware.Disks 0 ) 1 }}
+              FS_TYPE: ext4
+              DEST_PATH: /etc/netplan/config.yaml
+              CONTENTS: |
+                network:
+                  version: 2
+                  renderer: networkd
+                  ethernets:
+                    id0:
+                      match:
+                        name: en*
+                      dhcp4: true
+              UID: 0
+              GID: 0
+              MODE: 0644
+              DIRMODE: 0755
+          - name: "Update packages"
+            image: quay.io/tinkerbell/actions/cexec:latest
+            timeout: 90
+            environment:
+              BLOCK_DEVICE: {{ formatPartition ( index .Hardware.Disks 0 ) 1 }}
+              FS_TYPE: ext4
+              CHROOT: y
+              DEFAULT_INTERPRETER: "/bin/sh -c"
+              CMD_LINE: "apt-get -y update; apt-get -y upgrade; apt-get install -y memtester wget"
+              UPDATE_RESOLV_CONF: true
+              DEBIAN_FRONTEND: noninteractive
+          - name: "run memtester"
+            image: quay.io/tinkerbell/actions/cexec:latest
+            timeout: 300
+            environment:
+              BLOCK_DEVICE: {{ formatPartition ( index .Hardware.Disks 0 ) 1 }}
+              FS_TYPE: ext4
+              CHROOT: y
+              DEFAULT_INTERPRETER: "/bin/sh -c"
+              CMD_LINE: "/usr/bin/wget -O /etc/memtester.sh https://raw.githubusercontent.com/irishgordo/maas/refs/heads/hackweek/cattledogs/src/metadataserver/builtin_scripts/testing_scripts/memtester.sh; /usr/bin/chmod +x /etc/memtester.sh; /etc/memtester.sh"
+              UPDATE_RESOLV_CONF: true
+              DEBIAN_FRONTEND: noninteractive

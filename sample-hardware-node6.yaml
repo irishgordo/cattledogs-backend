@@ -1,0 +1,30 @@
+apiVersion: "tinkerbell.org/v1alpha1"
+kind: Hardware
+metadata:
+  name: hp-160-node-6
+  namespace: tink-system
+spec:
+  bmcRef:
+    apiGroup: bmc.tinkerbell.org/v1alpha1
+    name: hp-160-node-6-bmc-machine
+    kind: Machine
+  disks:
+    - device: "/dev/sda"
+    - device: "/dev/sdb"
+  interfaces:
+    - dhcp:
+        arch: x86_64
+        hostname: hp-160-node-6
+        ip:
+          address: '192.168.99.178'
+          gateway: '192.168.99.1'
+          netmask: 255.255.255.0
+        lease_time: 86400
+        mac: 70:10:6f:c4:6a:97
+        name_servers:
+          - 192.168.99.1
+          - 8.8.8.8
+        uefi: false
+      netboot:
+        allowPXE: true
+        allowWorkflow: true

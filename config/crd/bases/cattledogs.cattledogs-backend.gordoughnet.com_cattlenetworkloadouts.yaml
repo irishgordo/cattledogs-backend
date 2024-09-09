@@ -1,0 +1,695 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.16.1
+  name: cattlenetworkloadouts.cattledogs.cattledogs-backend.gordoughnet.com
+spec:
+  group: cattledogs.cattledogs-backend.gordoughnet.com
+  names:
+    kind: CattleNetworkLoadout
+    listKind: CattleNetworkLoadoutList
+    plural: cattlenetworkloadouts
+    singular: cattlenetworkloadout
+  scope: Namespaced
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        description: CattleNetworkLoadout is the Schema for the cattlenetworkloadouts
+          API
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: CattleNetworkLoadoutSpec defines the desired state of CattleNetworkLoadout
+            properties:
+              unifi:
+                description: Foo is an example field of CattleNetworkLoadout. Edit
+                  cattlenetworkloadout_types.go to remove/update
+                properties:
+                  pass:
+                    type: string
+                  url:
+                    type: string
+                  user:
+                    type: string
+                  verifySSL:
+                    type: boolean
+                required:
+                - pass
+                - url
+                - user
+                - verifySSL
+                type: object
+              unifiResults:
+                properties:
+                  clients:
+                    items:
+                      properties:
+                        _id:
+                          type: string
+                        ap_mac:
+                          type: string
+                        blocked:
+                          type: boolean
+                        bssid:
+                          type: string
+                        essid:
+                          type: string
+                        fixed_ip:
+                          type: string
+                        gw_mac:
+                          type: string
+                        hostname:
+                          type: string
+                        ip:
+                          type: string
+                        mac:
+                          type: string
+                        name:
+                          type: string
+                        network:
+                          type: string
+                        network_id:
+                          type: string
+                        note:
+                          type: string
+                        radio:
+                          type: string
+                        radio_name:
+                          type: string
+                        radio_proto:
+                          type: string
+                        site_id:
+                          type: string
+                        user_id:
+                          type: string
+                        usergroup_id:
+                          type: string
+                      type: object
+                    type: array
+                  sites:
+                    items:
+                      properties:
+                        _id:
+                          type: string
+                        attr_hidden_id:
+                          type: string
+                        desc:
+                          type: string
+                        name:
+                          type: string
+                      required:
+                      - _id
+                      - attr_hidden_id
+                      - desc
+                      - name
+                      type: object
+                    type: array
+                  udms:
+                    items:
+                      properties:
+                        _id:
+                          type: string
+                        adopt_ip:
+                          type: string
+                        adopt_url:
+                          type: string
+                        architecture:
+                          type: string
+                        bandsteering_mode:
+                          type: string
+                        cfgversion:
+                          type: string
+                        connect_request_ip:
+                          type: string
+                        connect_request_port:
+                          type: string
+                        connection_network_name:
+                          type: string
+                        device_domain:
+                          type: string
+                        device_id:
+                          type: string
+                        discovered_via:
+                          type: string
+                        displayable_version:
+                          type: string
+                        downlink_table:
+                          items:
+                            properties:
+                              mac:
+                                type: string
+                            required:
+                            - mac
+                            type: object
+                          type: array
+                        guest_token:
+                          type: string
+                        inform_ip:
+                          type: string
+                        inform_url:
+                          type: string
+                        ip:
+                          type: string
+                        kernel_version:
+                          type: string
+                        known_cfgversion:
+                          type: string
+                        lan_ip:
+                          type: string
+                        last_wan_ip:
+                          type: string
+                        lcm_night_mode_begins:
+                          type: string
+                        lcm_night_mode_ends:
+                          type: string
+                        lcm_tracker_seed:
+                          type: string
+                        license_state:
+                          type: string
+                        mac:
+                          type: string
+                        model:
+                          type: string
+                        name:
+                          type: string
+                        required_version:
+                          type: string
+                        serial:
+                          type: string
+                        site_id:
+                          type: string
+                        stp_version:
+                          type: string
+                        syslog_key:
+                          type: string
+                        temperatures:
+                          items:
+                            properties:
+                              name:
+                                type: string
+                              type:
+                                type: string
+                              value:
+                                type: string
+                            required:
+                            - name
+                            - type
+                            - value
+                            type: object
+                          type: array
+                        type:
+                          type: string
+                        version:
+                          type: string
+                        wlangroup_id_na:
+                          type: string
+                        wlangroup_id_ng:
+                          type: string
+                        x_inform_authkey:
+                          type: string
+                      required:
+                      - _id
+                      - adopt_ip
+                      - adopt_url
+                      - architecture
+                      - bandsteering_mode
+                      - cfgversion
+                      - connect_request_ip
+                      - connect_request_port
+                      - connection_network_name
+                      - device_domain
+                      - device_id
+                      - discovered_via
+                      - displayable_version
+                      - downlink_table
+                      - guest_token
+                      - inform_ip
+                      - inform_url
+                      - ip
+                      - kernel_version
+                      - known_cfgversion
+                      - lan_ip
+                      - last_wan_ip
+                      - lcm_night_mode_begins
+                      - lcm_night_mode_ends
+                      - lcm_tracker_seed
+                      - license_state
+                      - mac
+                      - model
+                      - name
+                      - required_version
+                      - serial
+                      - site_id
+                      - stp_version
+                      - syslog_key
+                      - type
+                      - version
+                      - wlangroup_id_na
+                      - wlangroup_id_ng
+                      - x_inform_authkey
+                      type: object
+                    type: array
+                  unifinetworks:
+                    items:
+                      properties:
+                        _id:
+                          type: string
+                        dhcp_relay_enabled:
+                          properties:
+                            txt:
+                              type: string
+                            val:
+                              type: boolean
+                          required:
+                          - txt
+                          - val
+                          type: object
+                        dhcpd_dns_enabled:
+                          properties:
+                            txt:
+                              type: string
+                            val:
+                              type: boolean
+                          required:
+                          - txt
+                          - val
+                          type: object
+                        dhcpd_enabled:
+                          properties:
+                            txt:
+                              type: string
+                            val:
+                              type: boolean
+                          required:
+                          - txt
+                          - val
+                          type: object
+                        dhcpd_gateway_enabled:
+                          properties:
+                            txt:
+                              type: string
+                            val:
+                              type: boolean
+                          required:
+                          - txt
+                          - val
+                          type: object
+                        dhcpd_ip_1:
+                          type: string
+                        dhcpd_leasetime:
+                          properties:
+                            txt:
+                              type: string
+                            val:
+                              type: string
+                          required:
+                          - txt
+                          - val
+                          type: object
+                        dhcpd_time_offset_enabled:
+                          properties:
+                            txt:
+                              type: string
+                            val:
+                              type: boolean
+                          required:
+                          - txt
+                          - val
+                          type: object
+                        dhcpguard_enabled:
+                          properties:
+                            txt:
+                              type: string
+                            val:
+                              type: boolean
+                          required:
+                          - txt
+                          - val
+                          type: object
+                        domain_name:
+                          type: string
+                        enabled:
+                          properties:
+                            txt:
+                              type: string
+                            val:
+                              type: boolean
+                          required:
+                          - txt
+                          - val
+                          type: object
+                        ip_subnet:
+                          type: string
+                        is_nat:
+                          properties:
+                            txt:
+                              type: string
+                            val:
+                              type: boolean
+                          required:
+                          - txt
+                          - val
+                          type: object
+                        name:
+                          type: string
+                        networkgroup:
+                          type: string
+                        purpose:
+                          type: string
+                        site_id:
+                          type: string
+                        vlan:
+                          properties:
+                            txt:
+                              type: string
+                            val:
+                              type: string
+                          required:
+                          - txt
+                          - val
+                          type: object
+                        vlan_enabled:
+                          properties:
+                            txt:
+                              type: string
+                            val:
+                              type: boolean
+                          required:
+                          - txt
+                          - val
+                          type: object
+                      required:
+                      - _id
+                      - dhcp_relay_enabled
+                      - dhcpd_dns_enabled
+                      - dhcpd_enabled
+                      - dhcpd_gateway_enabled
+                      - dhcpd_ip_1
+                      - dhcpd_leasetime
+                      - dhcpd_time_offset_enabled
+                      - dhcpguard_enabled
+                      - domain_name
+                      - enabled
+                      - ip_subnet
+                      - is_nat
+                      - name
+                      - networkgroup
+                      - purpose
+                      - site_id
+                      - vlan
+                      - vlan_enabled
+                      type: object
+                    type: array
+                  usgs:
+                    items:
+                      properties:
+                        _id:
+                          type: string
+                        cfgversion:
+                          type: string
+                        connect_request_ip:
+                          type: string
+                        connect_request_port:
+                          type: string
+                        device_id:
+                          type: string
+                        guest_token:
+                          type: string
+                        inform_ip:
+                          type: string
+                        inform_url:
+                          type: string
+                        ip:
+                          type: string
+                        known_cfgversion:
+                          type: string
+                        led_override:
+                          type: string
+                        license_state:
+                          type: string
+                        mac:
+                          type: string
+                        model:
+                          type: string
+                        name:
+                          type: string
+                        outdoor_mode_override:
+                          type: string
+                        required_version:
+                          type: string
+                        serial:
+                          type: string
+                        site_id:
+                          type: string
+                        temperatures:
+                          items:
+                            properties:
+                              name:
+                                type: string
+                              type:
+                                type: string
+                              value:
+                                type: string
+                            required:
+                            - name
+                            - type
+                            - value
+                            type: object
+                          type: array
+                        type:
+                          type: string
+                        version:
+                          type: string
+                        wan1:
+                          properties:
+                            dns:
+                              items:
+                                type: string
+                              type: array
+                            gateway:
+                              type: string
+                            ifname:
+                              type: string
+                            ip:
+                              type: string
+                            mac:
+                              type: string
+                            media:
+                              type: string
+                            name:
+                              type: string
+                            netmask:
+                              type: string
+                            num_port:
+                              type: integer
+                            port_idx:
+                              type: integer
+                            type:
+                              type: string
+                          required:
+                          - dns
+                          - gateway
+                          - ifname
+                          - ip
+                          - mac
+                          - media
+                          - name
+                          - netmask
+                          - num_port
+                          - port_idx
+                          - type
+                          type: object
+                        wan2:
+                          properties:
+                            dns:
+                              items:
+                                type: string
+                              type: array
+                            gateway:
+                              type: string
+                            ifname:
+                              type: string
+                            ip:
+                              type: string
+                            mac:
+                              type: string
+                            media:
+                              type: string
+                            name:
+                              type: string
+                            netmask:
+                              type: string
+                            num_port:
+                              type: integer
+                            port_idx:
+                              type: integer
+                            type:
+                              type: string
+                          required:
+                          - dns
+                          - gateway
+                          - ifname
+                          - ip
+                          - mac
+                          - media
+                          - name
+                          - netmask
+                          - num_port
+                          - port_idx
+                          - type
+                          type: object
+                      required:
+                      - _id
+                      - cfgversion
+                      - connect_request_ip
+                      - connect_request_port
+                      - device_id
+                      - guest_token
+                      - inform_ip
+                      - inform_url
+                      - ip
+                      - known_cfgversion
+                      - led_override
+                      - license_state
+                      - mac
+                      - model
+                      - name
+                      - outdoor_mode_override
+                      - required_version
+                      - serial
+                      - site_id
+                      - type
+                      - version
+                      - wan1
+                      - wan2
+                      type: object
+                    type: array
+                  usws:
+                    items:
+                      properties:
+                        _id:
+                          type: string
+                        architecture:
+                          type: string
+                        cfgversion:
+                          type: string
+                        connect_request_ip:
+                          type: string
+                        connect_request_port:
+                          type: string
+                        connection_network_name:
+                          type: string
+                        device_id:
+                          type: string
+                        displayable_version:
+                          type: string
+                        gateway_mac:
+                          type: string
+                        inform_ip:
+                          type: string
+                        inform_url:
+                          type: string
+                        ip:
+                          type: string
+                        kernel_version:
+                          type: string
+                        known_cfgversion:
+                          type: string
+                        led_override:
+                          type: string
+                        license_state:
+                          type: string
+                        mac:
+                          type: string
+                        model:
+                          type: string
+                        name:
+                          type: string
+                        outdoor_mode_override:
+                          type: string
+                        power_source:
+                          type: string
+                        power_source_voltage:
+                          type: string
+                        required_version:
+                          type: string
+                        serial:
+                          type: string
+                        setup_id:
+                          type: string
+                        site_id:
+                          type: string
+                        stp_version:
+                          type: string
+                        type:
+                          type: string
+                        version:
+                          type: string
+                      required:
+                      - _id
+                      - architecture
+                      - cfgversion
+                      - connect_request_ip
+                      - connect_request_port
+                      - connection_network_name
+                      - device_id
+                      - displayable_version
+                      - gateway_mac
+                      - inform_ip
+                      - inform_url
+                      - ip
+                      - kernel_version
+                      - known_cfgversion
+                      - led_override
+                      - license_state
+                      - mac
+                      - model
+                      - name
+                      - outdoor_mode_override
+                      - power_source
+                      - power_source_voltage
+                      - required_version
+                      - serial
+                      - setup_id
+                      - site_id
+                      - stp_version
+                      - type
+                      - version
+                      type: object
+                    type: array
+                type: object
+            type: object
+          status:
+            description: CattleNetworkLoadoutStatus defines the observed state of
+              CattleNetworkLoadout
+            properties:
+              phase:
+                description: |-
+                  INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
+                  Important: Run "make" to regenerate code after modifying this file
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

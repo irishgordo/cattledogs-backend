@@ -1,0 +1,33 @@
+apiVersion: tinkerbell.org/v1alpha1
+kind: Template
+metadata:
+  name: ntp-tester
+  namespace: tink-system
+spec:
+  data: |
+    name: ubuntu
+    version: "0.1"
+    global_timeout: 9800
+    tasks:
+      - name: "ntp-testing"
+        worker: "{{.device_1}}"
+        volumes:
+          - /dev:/dev
+          - /dev/console:/dev/console
+          - /lib/firmware:/lib/firmware:ro
+          - /var/run/docker.sock:/var/run/docker.sock
+        environment:
+          GLOBAL_VALUE: "my global value"
+        actions:
+          - name: "check ntp"
+            image: docker.io/irishgordo/cattledogs-ntp-validator:dev
+            timeout: 300
+            pid: host
+          - name: "power off"
+            image: ghcr.io/jacobweinstock/waitdaemon:latest
+            timeout: 90
+            pid: host
+            command: ["poweroff"]
+            environment:
+              IMAGE: alpine
+              WAIT_SECONDS: 5

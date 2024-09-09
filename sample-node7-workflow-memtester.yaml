@@ -1,0 +1,10 @@
+apiVersion: tinkerbell.org/v1alpha1
+kind: Workflow
+metadata:
+  name: ubuntu-workflow-node7-memtester
+  namespace: tink-system
+spec:
+  templateRef: ubuntu-mem-tester
+  hardwareRef: hp-160-node-7
+  hardwareMap:
+    device_1: fc:15:b4:94:a9:23

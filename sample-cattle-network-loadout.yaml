@@ -1,0 +1,11 @@
+apiVersion: cattledogs.cattledogs-backend.gordoughnet.com/v1
+kind: CattleNetworkLoadout
+metadata:
+  name: homelab
+  namespace: default
+spec:
+  unifi:
+    user: "harvester"
+    pass: "HarvesterTeam1234"
+    url: "https://192.168.1.1:443/"
+    verifySSL: false

@@ -1,0 +1,8 @@
+apiVersion: cattledogs.cattledogs-backend.gordoughnet.com/v1
+kind: CattleLocation
+metadata:
+  name: homelab
+  namespace: default
+spec:
+  name: "homelab-las-vegas"
+  description: "basic homelab Las Vegas, only targeting HP Machines currently..."

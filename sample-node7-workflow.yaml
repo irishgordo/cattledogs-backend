@@ -1,0 +1,10 @@
+apiVersion: tinkerbell.org/v1alpha1
+kind: Workflow
+metadata:
+  name: sandbox-workflow
+  namespace: tink-system
+spec:
+  templateRef: ubuntu
+  hardwareRef: hp-160-node-7
+  hardwareMap:
+    device_1: fc:15:b4:94:a9:23
